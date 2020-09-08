@@ -1,0 +1,40 @@
+$("#addCountry").on('click',(function(e) {
+    e.preventDefault();
+    
+    var value = $("#country1").serialize();
+    App.showModal();
+    
+    // console.log(formData);
+    $.ajax({
+        url: "/new_country/",
+        type: "POST",
+        data:  value,
+        // contentType: false,
+        //     cache: false,
+        // processData:false,
+        
+        success: function(response) {
+            
+            console.log(response);
+
+            var data = JSON.parse(response);
+
+            if(data.error){
+                var error = data.error.msg;
+                App.alerterWarning(error); 
+                
+
+            }else if(data.success){
+                var error = data.success.msg;
+                App.alerterSuccesss(error);
+                $("#country1")[0].reset();
+                
+                
+            }	
+        
+        },
+        error: function(e) {
+    
+        }          
+    });
+}))

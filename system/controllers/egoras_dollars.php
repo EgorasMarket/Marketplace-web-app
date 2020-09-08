@@ -1,0 +1,11 @@
+<?php 
+    class Egoras_dollars extends Controller
+    {
+    
+        public function index()
+        {
+            $this->view('home/egoras-dollars');
+        }
+    
+    }
+?>
